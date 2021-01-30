@@ -198,7 +198,11 @@ module Minitest
     rescue Assertion => e
       self.failures << e
     rescue Exception => e
-      self.failures << UnexpectedError.new(e)
+      begin
+        raise UnexpectedError.new(e)
+      rescue UnexpectedError => ee
+        self.failures << ee
+      end
     end
 
     def with_info_handler &block # :nodoc:

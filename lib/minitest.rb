@@ -922,8 +922,9 @@ module Minitest
     end
 
     def message # :nodoc:
-      bt = Minitest.filter_backtrace(self.backtrace).join "\n    "
-      "#{self.error.class}: #{self.error.message}\n    #{bt}"
+      bt = Minitest.filter_backtrace(self.backtrace)
+      bt = Minitest.filter_backtrace(self.cause.cause.backtrace) + bt if self.cause.cause
+      "#{self.error.class}: #{self.error.message}#{bt.map{ |s| "\n    #{s}" }.join}"
     end
 
     def result_label # :nodoc:
