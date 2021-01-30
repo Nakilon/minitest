@@ -6,6 +6,7 @@ require "hoe"
 Hoe.plugin :seattlerb
 Hoe.plugin :rdoc
 
+Hoe.plugin :gemspec
 Hoe.spec "minitest" do
   developer "Ryan Davis", "ryand-ruby@zenspider.com"
 
